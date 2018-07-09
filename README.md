@@ -8,6 +8,8 @@ provided by the [RailsApps Project](http://railsapps.github.io/).
 
 Rails Composer is supported by developers who purchase our RailsApps tutorials.
 
+A2B is a SaaS that will help you connect car owners traveling with users that has the need of a ride. 
+
 Problems? Issues?
 -----------
 
