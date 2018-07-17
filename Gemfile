@@ -43,3 +43,8 @@ end
 group :development, :test do
   gem 'rubocop'
 end
+
+#pwa
+gem "serviceworker-rails"
+
+
