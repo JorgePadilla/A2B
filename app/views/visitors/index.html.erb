@@ -9,7 +9,10 @@
         </div>
     </div>
 </header>
-
+<%= form_tag(trips_path, method: :get ) do %>
+  Search <%= text_field_tag :origin, params[:origin] %>
+  <%= submit_tag 'Search' %>
+<% end %>
 <!-- Page Content -->
 <div class="container">
 

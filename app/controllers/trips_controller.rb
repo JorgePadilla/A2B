@@ -4,7 +4,13 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    #@trips = Trip.all
+
+    if params[:origin]
+      @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
+    else
+      @trips = Trip.all
+    end
   end
 
   # GET /trips/1
@@ -69,6 +75,7 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin, :destiny, :starting_date, :end_date)
+      #params.require(:trip).permit(:origin, :destiny, :starting_date, :end_date)
+      params.permit(:origin)
     end
 end
