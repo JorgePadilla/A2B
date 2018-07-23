@@ -47,4 +47,6 @@ end
 #pwa
 gem "serviceworker-rails"
 
+#simple form
+#gem 'simple_form'
 
