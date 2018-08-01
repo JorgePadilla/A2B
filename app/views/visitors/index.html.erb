@@ -12,7 +12,7 @@
 <%= form_tag(trips_path, method: :get ) do %>
   <%= text_field_tag :origin, params[:origin], :class => "form-control", :placeholder=>"De" %>
   <%= text_field_tag :destiny, params[:destiny], :class => "form-control", :placeholder=>"A" %>
-  <%= date_field :starting_date, params[:starting_date], :class => "form-control" %>
+  <%= date_field :start_date, params[:start_date], :class => "form-control" %>
   <%= submit_tag 'Search' ,  :class => "form-control" %>
 <% end %>
 <!-- Page Content -->

@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>User:</strong>
+  <%= @trip.user.name %>
+</p>
+
+<p>
   <strong>Origin:</strong>
   <%= @trip.origin %>
 </p>
@@ -11,13 +16,23 @@
 </p>
 
 <p>
-  <strong>Starting date:</strong>
-  <%= @trip.starting_date %>
+  <strong>Start date:</strong>
+  <%= @trip.start_date %>
+</p>
+
+<p>
+  <strong>Start time:</strong>
+  <%= @trip.start_time %>
 </p>
 
 <p>
   <strong>End date:</strong>
   <%= @trip.end_date %>
+</p>
+
+<p>
+  <strong>End time:</strong>
+  <%= @trip.end_time %>
 </p>
 
 <%= link_to 'Edit', edit_trip_path(@trip) %> |

@@ -5,10 +5,13 @@
 <table>
   <thead>
     <tr>
+      <th>User</th>
       <th>Origin</th>
       <th>Destiny</th>
-      <th>Starting date</th>
+      <th>Start date</th>
+      <th>Start time</th>
       <th>End date</th>
+      <th>End time</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -16,10 +19,13 @@
   <tbody>
     <% @trips.each do |trip| %>
       <tr>
+        <td><%= trip.user.name %></td>
         <td><%= trip.origin %></td>
         <td><%= trip.destiny %></td>
-        <td><%= trip.starting_date %></td>
+        <td><%= trip.start_date %></td>
+        <td><%= trip.start_time %></td>
         <td><%= trip.end_date %></td>
+        <td><%= trip.end_time %></td>
         <td><%= link_to 'Show', trip %></td>
         <td><%= link_to 'Edit', edit_trip_path(trip) %></td>
         <td><%= link_to 'Destroy', trip, method: :delete, data: { confirm: 'Are you sure?' } %></td>

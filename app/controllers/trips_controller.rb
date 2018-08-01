@@ -4,14 +4,18 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    #@trips = Trip.all
-
-    if params[:origin]
-      #@trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
-      @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
-    else
-      @trips = Trip.all
-    end
+    @trips = Trip.all
+   # @user_name = @trip.user.name
+   if params[:start_date].nil?
+    @trips = Trip.where(start_date: params[:start_date])
+    #@trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
+   elsif params[:origin].present?
+    @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
+   elsif params[:destiny].present?
+    @trips = Trip.where('destiny LIKE ?', "%#{params[:destiny]}%")
+   else
+    @trip = Trip.all
+   end
   end
 
   # GET /trips/1
@@ -32,7 +36,8 @@ class TripsController < ApplicationController
   # POST /trips.json
   def create
     @trip = Trip.new(trip_params)
-
+    @trip.user_id = current_user.id
+    
     respond_to do |format|
       if @trip.save
         format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
@@ -68,6 +73,8 @@ class TripsController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_trip
@@ -76,7 +83,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:origin, :destiny, :starting_date, :end_date)
-      #params.permit(:origin)
+      params.require(:trip).permit(:user_id, :origin, :destiny, :start_date, :start_time, :end_date, :end_time)
     end
 end
