@@ -9,12 +9,14 @@
         </div>
     </div>
 </header>
+<div class="form-inline text-center">
 <%= form_tag(trips_path, method: :get ) do %>
   <%= text_field_tag :origin, params[:origin], :class => "form-control", :placeholder=>"De" %>
   <%= text_field_tag :destiny, params[:destiny], :class => "form-control", :placeholder=>"A" %>
   <%= date_field :start_date, params[:start_date], :class => "form-control" %>
   <%= submit_tag 'Search' ,  :class => "form-control" %>
 <% end %>
+</div>
 <!-- Page Content -->
 <div class="container">
 

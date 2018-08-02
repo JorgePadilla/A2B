@@ -4,18 +4,31 @@ class TripsController < ApplicationController
   # GET /trips
   # GET /trips.json
   def index
-    @trips = Trip.all
+    #@trips = Trip.all
    # @user_name = @trip.user.name
-   if params[:start_date].nil?
-    @trips = Trip.where(start_date: params[:start_date])
+   if :start_date.nil? && :origin.present? && :destiny.present?
+    @trips = Trip.where(start_date: params[:start_date]).where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
     #@trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
-   elsif params[:origin].present?
-    @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
-   elsif params[:destiny].present?
+   elsif :origin.present? && :destiny.blank?
+   # @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
+  #    if :start_date.blank?
+      @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
+   elsif :origin.present? && :destiny.present?
+       @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%").where('destiny LIKE ?', "%#{params[:destiny]}%")
+     #    if :start_date.blank?
+        # @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
+   elsif :destiny.present? 
     @trips = Trip.where('destiny LIKE ?', "%#{params[:destiny]}%")
-   else
-    @trip = Trip.all
-   end
+  #    else
+  #     @trips = @trips.where('origin LIKE ?', "%#{params[:origin]}%")
+  #    end
+   # elsif :destiny.present?
+    # @trips = Trip.where('destiny LIKE ?', "%#{params[:destiny]}%")
+    #elsif :origin.present?
+     # @trips = Trip.where('origin LIKE ?', "%#{params[:origin]}%")
+    else
+     @trips = Trip.all
+    end
   end
 
   # GET /trips/1
