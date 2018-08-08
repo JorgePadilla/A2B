@@ -3,6 +3,8 @@ class User < ApplicationRecord
   enum role: [:user, :vip, :admin]
   after_initialize :set_default_role, :if => :new_record?
  
+  include Gravtastic
+  gravtastic
 
   def set_default_role
     self.role ||= :user

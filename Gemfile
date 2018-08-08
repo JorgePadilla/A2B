@@ -36,9 +36,9 @@ gem 'thin'
 gem 'omniauth-facebook'
 
 group :development do
-  gem 'better_errors'
-  gem 'hub', :require=>nil
-  gem 'rails_layout'
+  #gem 'better_errors'
+  #gem 'hub', :require=>nil
+  #gem 'rails_layout'
 end
 group :development, :test do
   gem 'rubocop'
@@ -49,4 +49,7 @@ gem "serviceworker-rails"
 
 #simple form
 #gem 'simple_form'
+gem "stripe"
+gem "gravtastic"
+
 
