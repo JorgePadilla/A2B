@@ -21,7 +21,7 @@
     <% @trips.each do |trip| %>
       <tr>
         <td><%= trip.user.name %></td>
-        <td><%= image_tag current_user.gravatar_url(:size =>128, :secure => true) %></td>
+        <td><%= image_tag trip.user.gravatar_url(:size =>128, :secure => true) %></td>
         <td><%= trip.origin %></td>
         <td><%= trip.destiny %></td>
         <td><%= trip.start_date %></td>
