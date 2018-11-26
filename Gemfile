@@ -51,5 +51,5 @@ gem "serviceworker-rails"
 #gem 'simple_form'
 gem "stripe"
 gem "gravtastic"
-
+gem "capistrano"
 
