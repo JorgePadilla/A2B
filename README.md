@@ -2,7 +2,7 @@ A2b
 ================
 
 [![Deploy to Heroku](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)
-
+[ ![Codeship Status for JorgePadilla/a2b](https://app.codeship.com/projects/a54cc200-d36a-0136-b84a-660e90d97acd/status?branch=master)](https://app.codeship.com/projects/316350)
 
 
 A2B is a SaaS that will help you connect car owners traveling with users that has the need of a ride. 
