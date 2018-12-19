@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180806091136) do
+ActiveRecord::Schema.define(version: 20181218062203) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,6 +18,32 @@ ActiveRecord::Schema.define(version: 20180806091136) do
   create_table "charges", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "cities", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "costs", force: :cascade do |t|
+    t.integer "seat"
+    t.decimal "cost"
+    t.bigint "trip_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["trip_id"], name: "index_costs_on_trip_id"
+  end
+
+  create_table "distances", force: :cascade do |t|
+    t.bigint "origin_city_id"
+    t.bigint "destiny_city_id"
+    t.integer "km"
+    t.decimal "price"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["destiny_city_id"], name: "index_distances_on_destiny_city_id"
+    t.index ["origin_city_id"], name: "index_distances_on_origin_city_id"
   end
 
   create_table "trips", force: :cascade do |t|
@@ -30,6 +56,9 @@ ActiveRecord::Schema.define(version: 20180806091136) do
     t.time "end_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "city_id"
+    t.string "passcities"
+    t.index ["city_id"], name: "index_trips_on_city_id"
     t.index ["user_id"], name: "index_trips_on_user_id"
   end
 
@@ -68,5 +97,7 @@ ActiveRecord::Schema.define(version: 20180806091136) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "costs", "trips"
+  add_foreign_key "trips", "cities"
   add_foreign_key "trips", "users"
 end

@@ -25,6 +25,7 @@ group :development do
     gem 'capistrano-bundler', require: false
     gem 'capistrano3-puma',   require: false
     gem 'capistrano-thin',    require: false
+  gem 'rails-erd', require: false
 end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem 'administrate'
@@ -36,11 +37,11 @@ gem 'high_voltage'
 gem 'jquery-rails'
 gem 'pg', '~> 0.18'
 gem 'rails_admin'
-gem 'simple_form'
+#gem 'simple_form'
 gem 'therubyracer', :platform=>:ruby
 gem 'thin'
 gem 'omniauth-facebook'
-
+gem "bootstrap_form"
 group :development do
   #gem 'better_errors'
   #gem 'hub', :require=>nil
@@ -54,7 +55,7 @@ end
 gem "serviceworker-rails"
 
 #simple form
-#gem 'simple_form'
+gem 'simple_form'
 gem "stripe"
 gem "gravtastic"
 gem "capistrano", :group => :development

@@ -53,7 +53,8 @@ class TripsController < ApplicationController
     
     respond_to do |format|
       if @trip.save
-        format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        #format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to :controller=>"costs", :action=> "new", :trip_id=>@trip.id}
         format.json { render :show, status: :created, location: @trip }
       else
         format.html { render :new }

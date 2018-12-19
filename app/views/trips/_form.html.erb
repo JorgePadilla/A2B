@@ -1,20 +1,33 @@
-<div class="authform">
-<%= simple_form_for(@trip) do |f| %>
-  <%= f.error_notification %>
+
+<%= form_for(@trip) do |f| %>
+  <%# <%= f.error_notification %> 
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="form-inputs">
     <!--%= f.association :user %!-->
-    <%= f.input :origin %>
-    <%= f.input :destiny %>
-    <%= f.input :start_date %>
-    <%= f.input :start_time %>
-    <%= f.input :end_date %>
-    <%= f.input :end_time %>
-  </div>
+    <!--%= f.input :origin %!-->
+    <!--%= f.collection_select :origin, City.all, :name, :name %!-->
+    <!--%= f.input :origin, :collection => City.all, include_blank: false %!-->
+    <!--%= f.association :user %!-->
+    <%= f.label :origin %>
+    <%= f.collection_select :origin, City.all, :name,:name, prompt: false %>
+    <%= f.label :destiny %>
+    <%= f.collection_select :destiny, City.all, :name,:name, prompt: false %>
+    <%= f.label :start_date %>
+    <%= f.date_field :start_date %>
+    <%= f.label :start_time %>
+    <%= f.time_select :start_time %>
+    <%= f.label :end_date %>
+    <%= f.date_field :end_date %>
+    <%= f.label :end_time %>
+    <%= f.time_select :end_time %>
+    <%= f.label :passcities %>
+    <%= f.collection_select :passcities, City.all, :name,:name, prompt: false, multiple: true %>
+   
 
+  </div>
+  </br>
   <div class="form-actions">
     <%= f.button :submit %>
   </div>
 <% end %>
-</div>

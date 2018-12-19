@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Origin city:</strong>
+  <%= @distance.origin_city %>
+</p>
+
+<p>
+  <strong>Destiny city:</strong>
+  <%= @distance.destiny_city %>
+</p>
+
+<p>
+  <strong>Km:</strong>
+  <%= @distance.km %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @distance.price %>
+</p>
+
+<%= link_to 'Edit', edit_distance_path(@distance) %> |
+<%= link_to 'Back', distances_path %>
