@@ -6,9 +6,9 @@
 
   <div class="form-inputs">
     <%= f.input :seat , input_html: { max: '3', :value => 1 } %>
-    <%= f.input :cost, :input_html => { :value => @distance.first.price} %>
-    <!--%= f.association :trip, :value_method => @trip_id %!-->
-  </div>
+    <%= f.input :cost, input_html: { :value => number_with_precision(@price, precision: 2), readonly: true,} %>
+    
+    <%= f.input :trip_id,:as => :hidden,  :input_html => { :value => @trip_id} %>
 
   <div class="form-actions">
     <%= f.button :submit %>

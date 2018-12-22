@@ -17,10 +17,18 @@
     <%= f.date_field :start_date %>
     <%= f.label :start_time %>
     <%= f.time_select :start_time %>
+
+    
+    <%= f.label :roundtrip %>
+    <%= f.check_box :roundtrip %>
+
+    <div id="roundtrip" class="hidden">
     <%= f.label :end_date %>
     <%= f.date_field :end_date %>
     <%= f.label :end_time %>
     <%= f.time_select :end_time %>
+    </div>
+
     <%= f.label :passcities %>
     <%= f.collection_select :passcities, City.all, :name,:name, prompt: false, multiple: true %>
    
@@ -31,3 +39,15 @@
     <%= f.button :submit %>
   </div>
 <% end %>
+
+<script>
+$("#trip_roundtrip").click(function(){
+    
+    if ($("#roundtrip").hasClass('hidden')) {
+    $("#roundtrip").removeClass('hidden');
+    }else{
+     $("#roundtrip").addClass('hidden');
+    }
+
+});
+</script> 

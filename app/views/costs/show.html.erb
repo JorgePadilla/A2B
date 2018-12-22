@@ -12,8 +12,39 @@
 
 <p>
   <strong>Trip:</strong>
-  <%= @cost.trip %>
+  <%= @trip.id %>
 </p>
 
-<%= link_to 'Edit', edit_cost_path(@cost) %> |
-<%= link_to 'Back', costs_path %>
+<p>
+  <strong>Origin:</strong>
+  <%= @trip.origin %>
+</p>
+
+<p>
+  <strong>Trip Date:</strong>
+  <%= @trip.start_date %>
+</p>
+
+<p>
+  <strong>Trip Time:</strong>
+  <%= @trip.start_time %>
+</p>
+
+<p>
+  <strong>Destiny:</strong>
+  <%= @trip.destiny %>
+</p>
+
+<p>
+  <strong>Trip arrival date:</strong>
+  <%= @trip.end_date %>
+</p>
+
+<p>
+  <strong>Trip Time:</strong>
+  <%= @trip.end_time %>
+</p>
+
+<%= link_to 'Edit trip', edit_trip_path(@trip) %> |
+<%= link_to 'Start over', new_trip_path %> |
+<%= link_to 'Confirm', root_path %>

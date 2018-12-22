@@ -36,6 +36,21 @@ class TripsController < ApplicationController
   def show
   end
 
+  def confirm
+
+    respond_to do |format|
+      if @trip.save
+        #format.html { redirect_to @trip, notice: 'Trip was successfully created.' }
+        format.html { redirect_to :controller=>"costs", :action=> "new", :trip_id=>@trip.id}
+        format.json { render :show, status: :created, location: @trip }
+      else
+        format.html { render :new }
+        format.json { render json: @trip.errors, status: :unprocessable_entity }
+      end
+    end
+
+  end
+
   # GET /trips/new
   def new
     @trip = Trip.new
@@ -50,6 +65,20 @@ class TripsController < ApplicationController
   def create
     @trip = Trip.new(trip_params)
     @trip.user_id = current_user.id
+
+    if @trip.roundtrip
+      @trip2 = Trip.new()
+      @trip2.start_date = @trip.end_date
+      @trip2.start_time = @trip2.end_time
+
+      @trip2.origin = @trip.destiny
+      @trip2.destiny = @trip2.origin
+
+      @trip2.passcities = @trip.passcities
+
+      @trip2.save
+    else
+    end
     
     respond_to do |format|
       if @trip.save
@@ -97,6 +126,6 @@ class TripsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def trip_params
-      params.require(:trip).permit(:user_id, :origin, :destiny, :start_date, :start_time, :end_date, :end_time)
+      params.require(:trip).permit(:user_id, :origin, :destiny, :start_date, :start_time, :end_date, :end_time, :confirm, :roundtrip)
     end
 end

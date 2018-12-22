@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :variables
   resources :distances
   resources :costs
   resources :cities

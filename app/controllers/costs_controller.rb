@@ -10,33 +10,38 @@ class CostsController < ApplicationController
   # GET /costs/1
   # GET /costs/1.json
   def show
+    @trip=Trip.find_by_id(@cost.trip_id)
   end
 
   # GET /costs/new
   def new
     @cost = Cost.new
-    @trip_id = params[:trip_id]
-
-
-    @trip = Trip.find_by_id(@trip_id)
-    @origin_s = @trip.origin
-    @destiny_s = @trip.destiny
     
-    @city_O = City.find_by_name(@origin_s)
-    @origin_id = @city_O.id
+    
+   # if(:trip_id.empty?)
+      @trip_id = params[:trip_id]
+      @trip = Trip.find_by_id(@trip_id)
+      @origin_s = @trip.origin
+      @destiny_s = @trip.destiny
+      @city_O = City.find_by_name(@origin_s)
+      @origin_id = @city_O.id
 
-    @city_d = City.find_by_name(@destiny_s)
-    @destiny_id = @city_d.id
+      @city_d = City.find_by_name(@destiny_s)
+      @destiny_id = @city_d.id
 
 
-    #         = Trip.where("name = ?",)
-    #@distance = Distance.first
-    #@distance = Distance.where("origin_city_id = ?", 4)
-     @distance = Distance.where("origin_city_id = ? AND destiny_city_id = ?", @origin_id, @destiny_id )
-    #@object = 
-     #@(km*k)/4
-    # @price =
-    @price = @distance.first.price
+      #         = Trip.where("name = ?",)
+      #@distance = Distance.first
+      #@distance = Distance.where("origin_city_id = ?", 4)
+      @distance = Distance.where("origin_city_id = ? AND destiny_city_id = ?", @origin_id, @destiny_id )
+      #@object = 
+      #@(km*k)/4
+      # @price =
+      @km = @distance.first.km
+      @price = (@km * Variable.first.gasperkm)/4
+   # else
+      
+   # end
     
   end
 
@@ -48,6 +53,7 @@ class CostsController < ApplicationController
   # POST /costs.json
   def create
     @cost = Cost.new(cost_params)
+    
 
     respond_to do |format|
       if @cost.save
@@ -68,7 +74,7 @@ class CostsController < ApplicationController
         format.html { redirect_to @cost, notice: 'Cost was successfully updated.' }
         format.json { render :show, status: :ok, location: @cost }
       else
-        format.html { render :edit }
+        format.html { render :new }
         format.json { render json: @cost.errors, status: :unprocessable_entity }
       end
     end
